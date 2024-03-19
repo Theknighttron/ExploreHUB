@@ -42,7 +42,7 @@ const Hero = () => {
 
         <div className="text-center">
           <h1 className="text-3xl font-extrabold sm:text-5xl text-white">
-            Explore the Unseen Unforgettable Journeys Await
+            Explore the Unseen, Unforgettable Journeys Await
             <strong className="block font-extrabold">  </strong>
           </h1>
 
@@ -52,19 +52,21 @@ const Hero = () => {
           </p>
 
           <div className="mt-8 flex justify-center gap-4">
-            <a
+            
+            <button
               href="#"
               className="rounded bg-orange-500 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500"
             >
               Get Started
-            </a>
+            </button>
+  
 
-            <a
+            <button
               href="#"
               className="rounded bg-white px-12 py-3 text-sm font-medium text-orange-500 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500"
             >
               Learn More
-            </a>
+            </button>
           </div>
         </div>
       </section>
