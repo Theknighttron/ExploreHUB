@@ -23,22 +23,22 @@ const Navbar = () => {
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
     <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
       <li>
-        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0" aria-current="page">Home</a>
+        <a href="/" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0" aria-current="page">Home</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Accomodation</a>
+        <a href="/accomodation" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Accomodation</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">National Parks</a>
+        <a href="/parks" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">National Parks</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Where To go</a>
+        <a href="/to-go" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Where To go</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">About Us</a>
+        <a href="/about-us" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">About Us</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Contact</a>
+        <a href="/contact" class="block py-2 px-3 text-white rounded hover:bg-orange-500 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Contact</a>
       </li>
     </ul>
   </div>
