@@ -91,7 +91,7 @@ const Card = () => {
 
         <div
             class="border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
-            <img src="https://cdn-ajfhi.nitrocdn.com/KGztweKcUtUgsFQkUHxObgZRMXOaBfJI/assets/images/optimized/rev-f092426/tanzania-specialist.com/wp-content/uploads/2023/11/SBT_136-1024x658.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" class="w-full mb-3" />
+            <img src="https://www.elewanacollection.com/images/welcome-page/the-collection/pioneer-2.jpg" class="w-full mb-3" />
             <div class="p-4 pt-2">
                 <div class="mb-8">
                     <a href="#" class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 inline-block">
