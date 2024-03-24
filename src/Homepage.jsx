@@ -4,6 +4,8 @@ import Hero from './Component/Hero';
 import Card from './Component/Card';
 import About from './Component/About';
 import Footer from './Component/Footer';
+import AdminBookingsTable from './AdminBookingsTable';
+import AdminPage from './AdminPage';
 
 
 function Homepage() {

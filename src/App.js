@@ -6,6 +6,7 @@ import Parks from './Parks';
 import WhereToGo from './WhereToGo';
 import AboutUs from './AboutUs';
 import Contact from './Contact';
+import AdminPage from './AdminPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/to-go' element={<WhereToGo />} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/admin' element={<AdminPage />} />
       </Routes>
     </Router>
   );

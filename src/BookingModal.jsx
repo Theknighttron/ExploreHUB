@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 
 const BookingModal = ({ showModal, setShowModal, accommodation }) => {
     const [bookingData, setBookingData] = useState({
@@ -8,6 +10,8 @@ const BookingModal = ({ showModal, setShowModal, accommodation }) => {
         country: '',
         phoneNumber: '',
         date: '',
+        accommodationName: '',
+        price: '',
         additionalDetails: '',
     });
 
@@ -19,19 +23,25 @@ const BookingModal = ({ showModal, setShowModal, accommodation }) => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(bookingData); // For testing, log the booking data
-        setShowModal(false); // Close the modal after submission
-        setBookingData({ // Reset the form after submission
-            firstName: '',
-            lastName: '',
-            email: '',
-            country: '',
-            phoneNumber: '',
-            date: '',
-            additionalDetails: '',
-        });
+        
+        try {
+
+            const bookingDataWithAccommodation = {
+                ...bookingData,
+                accommodationName: accommodation.name,
+                price: accommodation.price
+            };
+
+             // Send booking data to backend API
+        const response = await axios.post('http://localhost:5000/api/bookings', bookingDataWithAccommodation);
+        console.log(response.data); // Log response from the backend
+        setShowModal(false); // Close the modal after successful booking
+        } catch (error) {
+            console.error('Error submitting booking:', error);
+            // Handle error if needed
+        }
     };
 
     const handleCloseModal = () => {
