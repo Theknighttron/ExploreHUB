@@ -1,0 +1,81 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+Explorehub-frontend/node_modules/
+Explorehub-backend/node_modules/
+Explorehub-frontend/.pnp
+Explorehub-backend/.pnp
+Explorehub-frontend/.pnp.js
+Explorehub-backend/.pnp.js
+
+# testing
+Explorehub-frontend/coverage
+Explorehub-backend/coverage
+
+# production
+Explorehub-frontend/build
+Explorehub-backend/build
+
+# misc
+Explorehub-frontend/.DS_Store
+Explorehub-frontend/.env.local
+Explorehub-frontend/.env.development.local
+Explorehub-frontend/.env.test.local
+Explorehub-frontend/.env.production.local
+Explorehub-backend/.DS_Store
+Explorehub-backend/.env.local
+Explorehub-backend/.env.development.local
+Explorehub-backend/.env.test.local
+Explorehub-backend/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+
+# compiled output
+dist
+tmp
+/out-tsc
+
+# dependencies
+parking-management-frontend/node_modules
+parking-management-backend/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+
+
+
+
+
