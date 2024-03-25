@@ -1,32 +1,32 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-Explorehub-frontend/node_modules/
-Explorehub-backend/node_modules/
-Explorehub-frontend/.pnp
-Explorehub-backend/.pnp
-Explorehub-frontend/.pnp.js
-Explorehub-backend/.pnp.js
+ExploreHub-frontend/node_modules/
+ExploreHub-backend/node_modules/
+ExploreHub-frontend/.pnp
+ExploreHub-backend/.pnp
+ExploreHub-frontend/.pnp.js
+ExploreHub-backend/.pnp.js
 
 # testing
-Explorehub-frontend/coverage
-Explorehub-backend/coverage
+ExploreHub-frontend/coverage
+ExploreHub-backend/coverage
 
 # production
-Explorehub-frontend/build
-Explorehub-backend/build
+ExploreHub-frontend/build
+ExploreHub-backend/build
 
 # misc
-Explorehub-frontend/.DS_Store
-Explorehub-frontend/.env.local
-Explorehub-frontend/.env.development.local
-Explorehub-frontend/.env.test.local
-Explorehub-frontend/.env.production.local
-Explorehub-backend/.DS_Store
-Explorehub-backend/.env.local
-Explorehub-backend/.env.development.local
-Explorehub-backend/.env.test.local
-Explorehub-backend/.env.production.local
+ExploreHub-frontend/.DS_Store
+ExploreHub-frontend/.env.local
+ExploreHub-frontend/.env.development.local
+ExploreHub-frontend/.env.test.local
+ExploreHub-frontend/.env.production.local
+ExploreHub-backend/.DS_Store
+ExploreHub-backend/.env.local
+ExploreHub-backend/.env.development.local
+ExploreHub-backend/.env.test.local
+ExploreHub-backend/.env.production.local
 
 npm-debug.log*
 yarn-debug.log*
@@ -40,8 +40,8 @@ tmp
 /out-tsc
 
 # dependencies
-parking-management-frontend/node_modules
-parking-management-backend/node_modules
+ExploreHub-frontend/node_modules
+ExploreHub-backend/node_modules
 
 # IDEs and editors
 /.idea
