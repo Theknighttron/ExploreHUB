@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Component/Navbar';
 import Footer from './Component/Footer';
-import BookingModal from './BookingModal'; // Import the BookingModal component
+import BookingModal from './BookingModal'; 
 
 const Accommodation = () => {
 
@@ -100,11 +100,34 @@ const Accommodation = () => {
     ];
 
     const [showModal, setShowModal] = useState(false);
-    const [selectedAccommodation, setSelectedAccommodation] = useState(null); // State to store selected accommodation data
+    const [selectedAccommodation, setSelectedAccommodation] = useState(null); 
 
     const handleBookClick = (accommodationData) => {
         setSelectedAccommodation(accommodationData);
         setShowModal(true);
+    };
+
+    useEffect(() => {
+        insertAccommodationsToDatabase();
+    }, []); // Empty dependency array ensures useEffect runs only on mount
+
+    const insertAccommodationsToDatabase = async () => {
+        try {
+            for (const accommodation of accommodationData) {
+                const response = await fetch('http://localhost:5000/api/accommodations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(accommodation) // Send each accommodation object individually
+                });
+    
+                const data = await response.json();
+                console.log(data.message); // Log the response message
+            }
+        } catch (error) {
+            console.error('Error inserting accommodations:', error);
+        }
     };
 
     return (

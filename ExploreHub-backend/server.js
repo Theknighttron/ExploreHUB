@@ -55,19 +55,36 @@ app.post('/api/bookings', (req, res) => {
 });
 
 app.post("/api/accommodations", (req, res) => {
-  const { name, description, image, price } = req.body; // get an array of objects
+  const { name, description, image, price } = req.body;
 
-  const sql = `INSERT INTO accommodations (name, description, image, price) VALUES (?, ?, ?, ?)`;
-  connection.query(sql, [name, description, image, price], (err, result) => {
-    if (err) {
-      console.error('Error adding accommodation:', err);
-      res.status(500).json({ error: 'Internal server error' });
-      return;
-    }
-    console.log('Accommodation added successfully');
-    res.status(201).json({ message: 'Accommodation added successfully' });
+  // Check if the accommodation already exists in the database
+  const checkDuplicateSql = `SELECT * FROM accommodations WHERE name = ?`;
+  db.query(checkDuplicateSql, [name], (checkErr, checkResult) => {
+      if (checkErr) {
+          console.error('Error checking for duplicate accommodation:', checkErr);
+          res.status(500).json({ error: 'Internal server error' });
+          return;
+      }
+
+      if (checkResult.length > 0) {
+          // console.log('Accommodation already exists:', name);
+          res.status(200).json({ message: 'Accommodation already exists' });
+          return;
+      }
+
+      // Insert the accommodation if it does not already exist
+      const insertSql = `INSERT INTO accommodations (name, description, image, price) VALUES (?, ?, ?, ?)`;
+      db.query(insertSql, [name, description, image, price], (insertErr, insertResult) => {
+          if (insertErr) {
+              console.error('Error adding accommodation:', insertErr);
+              res.status(500).json({ error: 'Internal server error' });
+              return;
+          }
+          console.log('Accommodation added successfully:', name);
+          res.status(200).json({ message: 'Accommodation added successfully' });
+      });
   });
-})
+});
 
 
 // API endpoint to fetch all bookings
