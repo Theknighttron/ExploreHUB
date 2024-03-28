@@ -113,6 +113,22 @@ app.get('/api/bookings', (req, res) => {
   });
 });
 
+app.delete('/api/accommodations/:id', (req, res) => {
+  const accommodationId = req.params.id;
+
+  // Implement your logic to delete the accommodation with the given ID from the database
+  // Example:
+  db.query('DELETE FROM accommodations WHERE id = ?', accommodationId, (err, result) => {
+      if (err) {
+          console.error('Error deleting accommodation:', err);
+          res.status(500).json({ error: 'An error occurred' });
+      } else {
+          res.status(200).json({ message: 'Accommodation deleted successfully' });
+      }
+  });
+});
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
