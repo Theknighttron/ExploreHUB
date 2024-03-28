@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AdminBookingsTable from './AdminBookingsTable'; 
+import AdminAccommodation from './AdminAccommodation'; // Import the AdminAccommodation component
 
 const AdminPage = () => {
   // State to store bookings data
   const [bookings, setBookings] = useState([]);
+  // State to track the active component
+  const [activeComponent, setActiveComponent] = useState('dashboard');
 
   // Fetch bookings data from the server on component mount
   useEffect(() => {
@@ -23,7 +26,11 @@ const AdminPage = () => {
       });
   };
 
-  
+  // Function to handle click event of the "Accommodation" button
+  const handleAccommodationClick = () => {
+    setActiveComponent('accommodation'); // Update active component to 'accommodation'
+  };
+
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -33,8 +40,7 @@ const AdminPage = () => {
         {/* Sidebar menu */}
         <ul className="p-4">
           <a href="/admin"><button className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">Dashboard</button></a>
-          <a href="/"><button className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">Accomodaton</button></a>
-          <a href="/"><button className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">National Park</button></a>
+          <button onClick={handleAccommodationClick} className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">Accommodation</button>
         </ul>
       </div>
 
@@ -42,8 +48,13 @@ const AdminPage = () => {
       <div className="flex-1 p-5">
         {/* Dashboard header */}
         <h1 className='text-center font-semibold mt-5 text-3xl'>ACCOMMODATION BOOKING DATA</h1>
-        {/* AdminBookingsTable component */}
-        <AdminBookingsTable bookings={bookings} />
+        {/* Conditional rendering based on active component */}
+        {activeComponent === 'dashboard' && (
+          <AdminBookingsTable bookings={bookings} />
+        )}
+        {activeComponent === 'accommodation' && (
+          <AdminAccommodation />
+        )}
       </div>
     </div>
   );
