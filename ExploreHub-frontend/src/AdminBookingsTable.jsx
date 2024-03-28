@@ -4,8 +4,6 @@ import Navbar from './Component/Navbar';
 const AdminBookingsTable = ({ bookings }) => {
   return (
     <>
-    <Navbar />
-
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full mt-10 text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border">

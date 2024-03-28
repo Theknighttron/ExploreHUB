@@ -54,6 +54,21 @@ app.post('/api/bookings', (req, res) => {
   });
 });
 
+app.post("/api/accommodations", (req, res) => {
+  const { name, description, image, price } = req.body; // get an array of objects
+
+  const sql = `INSERT INTO accommodations (name, description, image, price) VALUES (?, ?, ?, ?)`;
+  connection.query(sql, [name, description, image, price], (err, result) => {
+    if (err) {
+      console.error('Error adding accommodation:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    console.log('Accommodation added successfully');
+    res.status(201).json({ message: 'Accommodation added successfully' });
+  });
+})
+
 
 // API endpoint to fetch all bookings
 app.get('/api/bookings', (req, res) => {
