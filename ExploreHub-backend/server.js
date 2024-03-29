@@ -58,7 +58,6 @@ app.post("/api/accommodations", (req, res) => {
   const { name, description, image, price } = req.body;
 
   // Check if the accommodation already exists in the database
-  // Check if the accommodation already exists in the database
   const checkDuplicateSql = `SELECT * FROM accommodations WHERE LOWER(name) = LOWER(?)`;
   db.query(checkDuplicateSql, [name.trim()], (checkErr, checkResult) => {
       if (checkErr) {
@@ -90,7 +89,6 @@ app.post("/api/accommodations", (req, res) => {
 
 // API endpoint to fetch all accommodations
 app.get('/api/accommodations', (req, res) => {
-  // Query all bookings from the database
   db.query('SELECT * FROM accommodations', (err, results) => {
     if (err) {
       console.error('Error fetching accommodations:', err);
@@ -113,11 +111,25 @@ app.get('/api/bookings', (req, res) => {
   });
 });
 
+// Define a route to handle DELETE bookings
+app.delete('/api/bookings/:id', (req, res) => {
+  const bookingId = req.params.id;
+
+  // Delete the booking from the MySQL database
+  db.query('DELETE FROM bookings WHERE id = ?', bookingId, (err, result) => {
+    if (err) {
+      console.error('Error deleting booking:', err);
+      res.status(500).json({ error: 'An error occurred' });
+    } else {
+      res.status(200).json({ message: 'Booking deleted successfully' });
+    }
+  });
+});
+
+
 app.delete('/api/accommodations/:id', (req, res) => {
   const accommodationId = req.params.id;
 
-  // Implement your logic to delete the accommodation with the given ID from the database
-  // Example:
   db.query('DELETE FROM accommodations WHERE id = ?', accommodationId, (err, result) => {
       if (err) {
           console.error('Error deleting accommodation:', err);
