@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Component/Navbar';
 import Footer from './Component/Footer';
-import BookingModal from './BookingModal'; // Import the BookingModal component
+import BookingModal from './BookingModal'; 
 
 const Accommodation = () => {
 
@@ -99,15 +99,50 @@ const Accommodation = () => {
 
     ];
 
+    const [accommodations, setAccommodations] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [selectedAccommodation, setSelectedAccommodation] = useState(null); // State to store selected accommodation data
+    const [selectedAccommodation, setSelectedAccommodation] = useState(null); 
 
     const handleBookClick = (accommodationData) => {
         setSelectedAccommodation(accommodationData);
         setShowModal(true);
     };
 
-    return (
+    useEffect(() => {
+        insertAccommodationsToDatabase();
+        fetchAccommodations();
+    }, []); // Empty dependency array ensures useEffect runs only on mount
+
+    const insertAccommodationsToDatabase = async () => {
+        try {
+            for (const accommodation of accommodationData) {
+                const response = await fetch('http://localhost:5000/api/accommodations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(accommodation) // Send each accommodation object individually
+                });
+    
+                const data = await response.json();
+                console.log(data.message); // Log the response message
+            }
+        } catch (error) {
+            console.error('Error inserting accommodations:', error);
+        }
+    };
+
+    const fetchAccommodations = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/accommodations');
+            const data = await response.json();
+            setAccommodations(data.concat(accommodationData));
+        } catch (error) {
+            console.error('Error fetching accommodations:', error);
+        }
+    };
+
+     return (
         <div>
             <Navbar />
             <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
@@ -116,8 +151,8 @@ const Accommodation = () => {
                     <h1 className="text-3xl">Explore Our Diverse Accommodation Options</h1>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
-                    {/* Accommodation Cards */}
-                    {accommodationData.map((accommodation, index) => (
+                    {/* Render both hardcoded and fetched accommodations */}
+                    {accommodations.map((accommodation, index) => (
                         <div key={index} className="border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
                             <img src={accommodation.image} alt={accommodation.name} className="w-full mb-3" />
                             <div className="p-4 pt-2">
@@ -126,8 +161,7 @@ const Accommodation = () => {
                                         {accommodation.name}
                                     </div>
                                     <p className="text-gray-700 text-sm">{accommodation.description}</p>
-                                    <p className="mt-2 text-gray-800">${accommodation.price} per night</p> {/* Display price here */}
-                                    {/* Button to Book */}
+                                    <p className="mt-2 text-gray-800">${accommodation.price} per night</p>
                                     <button onClick={() => handleBookClick(accommodation)} className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded mt-4">Book</button>
                                 </div>
                             </div>
