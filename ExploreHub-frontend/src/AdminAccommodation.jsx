@@ -77,7 +77,7 @@ const AdminAccommodation = () => {
         <div>
             <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
                 {/* Add accommodation button */}
-                <button onClick={() => setShowModal(true)} className="mb-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button onClick={() => setShowModal(true)} className="mb-5 bg-blue-500 ml-12 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Add Accommodation
                 </button>
 
@@ -89,7 +89,7 @@ const AdminAccommodation = () => {
                                 <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
                             </div>
 
-                            <div className="relative bg-white rounded-lg shadow-md">
+                            <div className="relative bg-white rounded-lg shadow-md w-96">
                                 <div className="flex items-center justify-between p-4 border-b">
                                     <h3 className="text-lg font-medium">Add Accommodation</h3>
                                     <button onClick={() => setShowModal(false)}>&times;</button>
@@ -98,19 +98,19 @@ const AdminAccommodation = () => {
                                     <form onSubmit={handleSubmit} className="space-y-4">
                                         <div>
                                             <label htmlFor="name" className="block text-sm font-medium">Name</label>
-                                            <input type="text" name="name" id="name" value={newAccommodation.name} onChange={handleInputChange} className="w-full border-gray-300 rounded-md" required />
+                                            <input type="text" name="name" id="name" value={newAccommodation.name} onChange={handleInputChange} className="w-full border border-gray-300 p-2 rounded-md" required />
                                         </div>
                                         <div>
                                             <label htmlFor="description" className="block text-sm font-medium">Description</label>
-                                            <input type="text" name="description" id="description" value={newAccommodation.description} onChange={handleInputChange} className="w-full border-gray-300 rounded-md" required />
+                                            <input type="text" name="description" id="description" value={newAccommodation.description} onChange={handleInputChange} className="w-full border border-gray-300 p-2 rounded-md" required />
                                         </div>
                                         <div>
                                             <label htmlFor="image" className="block text-sm font-medium">Image</label>
-                                            <input type="text" name="image" id="image" value={newAccommodation.image} onChange={handleInputChange} className="w-full border-gray-300 rounded-md" required />
+                                            <input type="text" name="image" id="image" value={newAccommodation.image} onChange={handleInputChange} className="w-full border border-gray-300 p-2 rounded-md" required />
                                         </div>
                                         <div>
                                             <label htmlFor="price" className="block text-sm font-medium">Price</label>
-                                            <input type="text" name="price" id="price" value={newAccommodation.price} onChange={handleInputChange} className="w-full border-gray-300 rounded-md" required />
+                                            <input type="text" name="price" id="price" value={newAccommodation.price} onChange={handleInputChange} className="w-full border border-gray-300 p-2 rounded-md" required />
                                         </div>
                                         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                             Submit

@@ -8,7 +8,7 @@ const AdminBookingsTable = ({ bookings, onDeleteBooking }) => {
       // Send a DELETE request to the backend endpoint
       await axios.delete(`http://localhost:5000/api/bookings/${id}`);
       // Call the onDeleteBooking function passed as props to update the state in the parent component
-      // onDeleteBooking(id);
+      onDeleteBooking(id);
     } catch (error) {
       console.error('Error deleting booking:', error);
     }

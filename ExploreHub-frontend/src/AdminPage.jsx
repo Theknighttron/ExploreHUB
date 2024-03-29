@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AdminBookingsTable from './AdminBookingsTable'; 
 import AdminAccommodation from './AdminAccommodation'; // Import the AdminAccommodation component
+import ParentComponent from './ParentComponent';
 
 const AdminPage = () => {
   // State to store bookings data
@@ -32,25 +33,33 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <div className="bg-blue-400 w-64">
+      <div className="bg-blue-400 w-64 overflow-y-auto">
         {/* Sidebar header */}
-        <div className="p-4 bg-cyan-900 self-center text-2xl font-semibold whitespace-nowrap  text-white">ExploreHub</div>
+        <a href="/">
+          <div className="p-4 bg-cyan-900 self-center text-2xl font-semibold whitespace-nowrap  text-white">ExploreHub</div>
+        </a>
         {/* Sidebar menu */}
         <ul className="p-4">
-          <a href="/admin"><button className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">Dashboard</button></a>
-          <button onClick={handleAccommodationClick} className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">Accommodation</button>
+          <a href="/admin">
+            <button className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">
+              Dashboard
+            </button>
+          </a>
+          <button onClick={handleAccommodationClick} className="py-2 hover:bg-gray-300 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-3 text-center">
+            Accommodation
+          </button>
         </ul>
       </div>
 
       {/* Main content */}
-      <div className="flex-1 p-5">
+      <div className="flex-1 p-5 overflow-y-auto">
         {/* Dashboard header */}
         <h1 className='text-center font-semibold mt-5 text-3xl'>ACCOMMODATION BOOKING DATA</h1>
         {/* Conditional rendering based on active component */}
         {activeComponent === 'dashboard' && (
-          <AdminBookingsTable bookings={bookings} />
+          <ParentComponent bookings={bookings} />
         )}
         {activeComponent === 'accommodation' && (
           <AdminAccommodation />
