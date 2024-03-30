@@ -60,31 +60,32 @@ app.post("/api/accommodations", (req, res) => {
   // Check if the accommodation already exists in the database
   const checkDuplicateSql = `SELECT * FROM accommodations WHERE LOWER(name) = LOWER(?)`;
   db.query(checkDuplicateSql, [name.trim()], (checkErr, checkResult) => {
-      if (checkErr) {
-          console.error('Error checking for duplicate accommodation:', checkErr);
-          res.status(500).json({ error: 'Internal server error' });
-          return;
-      }
+    if (checkErr) {
+      console.error('Error checking for duplicate accommodation:', checkErr);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
 
-      if (checkResult.length > 0) {
-          // console.log('Accommodation already exists:', name);
-          res.status(200).json({ message: 'Accommodation already exists' });
-          return;
-      }
+    if (checkResult.length > 0) {
+      // Accommodation already exists
+      res.status(409).json({ error: 'Accommodation already exists' }); // Return a 409 Conflict status
+      return;
+    }
 
-      // Insert the accommodation if it does not already exist
-      const insertSql = `INSERT INTO accommodations (name, description, image, price) VALUES (?, ?, ?, ?)`;
-      db.query(insertSql, [name.trim(), description, image, price], (insertErr, insertResult) => {
-          if (insertErr) {
-              console.error('Error adding accommodation:', insertErr);
-              res.status(500).json({ error: 'Internal server error' });
-              return;
-          }
-          console.log('Accommodation added successfully:', name);
-          res.status(200).json({ message: 'Accommodation added successfully' });
-      });
+    // Insert the accommodation if it does not already exist
+    const insertSql = `INSERT INTO accommodations (name, description, image, price) VALUES (?, ?, ?, ?)`;
+    db.query(insertSql, [name.trim(), description, image, price], (insertErr, insertResult) => {
+      if (insertErr) {
+        console.error('Error adding accommodation:', insertErr);
+        res.status(500).json({ error: 'Internal server error' });
+        return;
+      }
+      // console.log('Accommodation added successfully:', name);
+      res.status(201).json({ message: 'Accommodation added successfully' }); // Return a 201 Created status
+    });
   });
 });
+
 
 
 // API endpoint to fetch all accommodations
