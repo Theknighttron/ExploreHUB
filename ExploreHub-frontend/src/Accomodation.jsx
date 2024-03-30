@@ -99,9 +99,12 @@ const Accommodation = () => {
 
     ];
 
+    const places = ['Amboseli', 'Nairobi City', 'Mombasa', 'Samburu', 'Masai Mara', 'Laikipia', 'Kicheche Bush Camp', 'Sarova Lion Hill Game Lodge', 'Nairobi Serena Hotel', 'Mara Serena Safari Lodge', 'The Sands at Nomad Hotel', 'Eka Hotel', 'Hemingways Nairobi', 'Kinondo Kwetu Camp', 'Borana Lodge'];
+
     const [accommodations, setAccommodations] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedAccommodation, setSelectedAccommodation] = useState(null); 
+    const [selectedPlaces, setSelectedPlaces] = useState([]);
 
     const handleBookClick = (accommodationData) => {
         setSelectedAccommodation(accommodationData);
@@ -132,6 +135,17 @@ const Accommodation = () => {
         }
     };
 
+     // Function to handle checkbox change
+     const handleCheckboxChange = (place) => {
+        if (selectedPlaces.includes(place)) {
+            // If the place is already selected, remove it
+            setSelectedPlaces(selectedPlaces.filter(p => p !== place));
+        } else {
+            // If the place is not selected, add it
+            setSelectedPlaces([...selectedPlaces, place]);
+        }
+    };
+
     const fetchAccommodations = async () => {
         try {
             const response = await fetch('http://localhost:5000/api/accommodations');
@@ -142,7 +156,18 @@ const Accommodation = () => {
         }
     };
 
-     return (
+
+     // Filter accommodations based on selected places
+    const filteredAccommodations = accommodations.filter(accommodation => {
+        // If no places are selected, return true for all accommodations
+        if (selectedPlaces.length === 0) {
+            return true;
+        }
+        // Check if the accommodation's name matches any of the selected places
+        return selectedPlaces.includes(accommodation.name);
+    });
+
+    return (
         <div>
             <Navbar />
             <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
@@ -151,22 +176,40 @@ const Accommodation = () => {
                     <h1 className="text-3xl">Explore Our Diverse Accommodation Options</h1>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
-                    {/* Render both hardcoded and fetched accommodations */}
-                    {accommodations.map((accommodation, index) => (
-                        <div key={index} className="border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
-                            <img src={accommodation.image} alt={accommodation.name} className="w-full mb-3" />
-                            <div className="p-4 pt-2">
-                                <div className="mb-8">
-                                    <div className="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 inline-block">
-                                        {accommodation.name}
+                    {/* Render checkboxes for places */}
+                    <div className="col-span-1">
+                        <h2 className="font-bold text-lg mb-4">Locations</h2>
+                        {places.map((place, index) => (
+                            <div key={index} className="mb-2">
+                                <input
+                                    type="checkbox"
+                                    id={place}
+                                    checked={selectedPlaces.includes(place)}
+                                    onChange={() => handleCheckboxChange(place)}
+                                    className="mr-2"
+                                />
+                                <label htmlFor={place}>{place}</label>
+                            </div>
+                        ))}
+                    </div>
+                    {/* Render filtered accommodations */}
+                    <div className="col-span-2 grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
+                        {filteredAccommodations.map((accommodation, index) => (
+                            <div key={index} className="border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+                                <img src={accommodation.image} alt={accommodation.name} className="w-full mb-3" />
+                                <div className="p-4 pt-2">
+                                    <div className="mb-8">
+                                        <div className="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 inline-block">
+                                            {accommodation.name}
+                                        </div>
+                                        <p className="text-gray-700 text-sm">{accommodation.description}</p>
+                                        <p className="mt-2 text-gray-800">${accommodation.price} per night</p>
+                                        <button onClick={() => handleBookClick(accommodation)} className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded mt-4">Book</button>
                                     </div>
-                                    <p className="text-gray-700 text-sm">{accommodation.description}</p>
-                                    <p className="mt-2 text-gray-800">${accommodation.price} per night</p>
-                                    <button onClick={() => handleBookClick(accommodation)} className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded mt-4">Book</button>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
             {/* Render the BookingModal component */}
