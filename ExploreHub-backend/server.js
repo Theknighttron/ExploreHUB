@@ -67,7 +67,7 @@ app.post("/api/accommodations", (req, res) => {
       }
 
       if (checkResult.length > 0) {
-          console.log('Accommodation already exists:', name);
+          // console.log('Accommodation already exists:', name);
           res.status(200).json({ message: 'Accommodation already exists' });
           return;
       }
