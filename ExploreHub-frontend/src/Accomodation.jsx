@@ -170,7 +170,7 @@ const Accommodation = () => {
     return (
         <div>
             <Navbar />
-            <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+            <div className="w-full mx-auto p-5 sm:p-10 md:p-16">
                 <div className="text-center p-10">
                     <h1 className="font-bold text-4xl mb-4">Discover Kenya</h1>
                     <h1 className="text-3xl">Explore Our Diverse Accommodation Options</h1>
